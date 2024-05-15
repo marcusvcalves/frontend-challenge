@@ -13,7 +13,9 @@ export default {
         'primary-blue': '#02274F',
         'primary-yellow': '#FDCF00',
         'greyish-white': '#fafafa',
-        'input-grey': '#f1f1f1',
+        "picture-text": "#2F2F2F",
+        'inputfield-background': '#f1f1f1',
+        "userpage-background": "#f1f5f9"
       },
     },
   },
