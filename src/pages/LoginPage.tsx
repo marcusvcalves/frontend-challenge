@@ -7,9 +7,9 @@ import InputField from '../components/InputField';
 import Image from '../components/Logo';
 import Wrapper from '../components/Wrapper';
 import { useEffect, useRef } from 'react';
+import { Navigate } from 'react-router-dom';
 
 const LoginPage = () => {
-  const { handleLogin } = useAuthContext();
   const emailInputRef = useRef<HTMLInputElement>(null);
 
   const formik = useFormik({
@@ -27,6 +27,12 @@ const LoginPage = () => {
       emailInputRef.current.focus();
     }
   }, []);
+
+  const { user, handleLogin } = useAuthContext();
+
+  if (user) {
+    return <Navigate to="/user-page" replace />;
+  }
 
   return (
     <Wrapper className="bg-greyish-white h-screen flex items-center justify-center">

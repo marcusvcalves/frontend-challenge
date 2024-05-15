@@ -5,9 +5,14 @@ import InputField from '../components/InputField';
 import Wrapper from '../components/Wrapper';
 import Forms from '../components/Form/Forms';
 import Avatar from '../components/Avatar';
+import { Navigate } from 'react-router-dom';
 
 const UserPage = () => {
   const { user, handleLogout } = useAuthContext();
+
+  if (!user) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <Wrapper className="flex flex-col bg-userpage-background h-screen">

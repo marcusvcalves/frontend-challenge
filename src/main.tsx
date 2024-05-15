@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom/client';
 import React from 'react';
 import LoginPage from './pages/LoginPage.tsx';
 import UserPage from './pages/UserPage.tsx';
+import ErrorPage from './pages/ErrorPage.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -26,6 +27,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             </AuthProvider>
           }
         />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
