@@ -11,6 +11,8 @@ type AuthContextType = {
   authTokens: AuthTokens | null;
   user: User | null;
   handleLogin: (values: FormikValues) => void;
+  loginError: string | null;
+  setLoginError: React.Dispatch<React.SetStateAction<string | null>>;
   handleLogout: () => void;
 };
 
@@ -21,17 +23,26 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   });
   const [user, setUser] = useState<User | null>(null);
   const navigate = useNavigate();
+  const [loginError, setLoginError] = useState<string | null>(null);
 
   const handleLogin = (values: FormikValues) => {
-    axiosClient.post('/auth/login/', values).then((res) => {
-      const authTokens: AuthTokens = {
-        accessToken: res.data.tokens.access,
-        refreshToken: res.data.tokens.refresh,
-      };
-      setAuthTokens(authTokens);
-      localStorage.setItem('authTokens', JSON.stringify(authTokens));
-      navigate('/user-page');
-    });
+    axiosClient
+      .post('/auth/login/', values)
+      .then((res) => {
+        const authTokens: AuthTokens = {
+          accessToken: res.data.tokens.access,
+          refreshToken: res.data.tokens.refresh,
+        };
+        setAuthTokens(authTokens);
+        localStorage.setItem('authTokens', JSON.stringify(authTokens));
+        navigate('/user-page');
+        setLoginError(null);
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 401) {
+          setLoginError('Invalid email or password.');
+        }
+      });
   };
 
   const handleLogout = () => {
@@ -68,6 +79,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     authTokens,
     user,
     handleLogin,
+    loginError,
+    setLoginError,
     handleLogout,
   };
 

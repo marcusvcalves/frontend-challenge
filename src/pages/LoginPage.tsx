@@ -2,12 +2,13 @@ import { useAuthContext } from '../contexts/AuthContext';
 import { useFormik } from 'formik';
 import Button from '../components/Button';
 import Card from '../components/Card';
-import Forms from '../components/Form';
+import Forms from '../components/Forms';
 import InputField from '../components/InputField';
 import Image from '../components/Logo';
 import Wrapper from '../components/Wrapper';
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { Navigate } from 'react-router-dom';
+import validationSchema from '../utils/validation';
 
 const LoginPage = () => {
   const emailInputRef = useRef<HTMLInputElement>(null);
@@ -17,18 +18,24 @@ const LoginPage = () => {
       email: '',
       password: '',
     },
+    validationSchema: validationSchema,
     onSubmit: (values) => {
       handleLogin(values);
     },
   });
 
+  const { user, handleLogin, setLoginError, loginError } = useAuthContext();
+
+  const clearLoginError = useCallback(() => {
+    setLoginError(null);
+  }, [setLoginError]);
+
   useEffect(() => {
     if (emailInputRef.current) {
       emailInputRef.current.focus();
     }
-  }, []);
-
-  const { user, handleLogin } = useAuthContext();
+    clearLoginError();
+  }, [clearLoginError]);
 
   if (user) {
     return <Navigate to="/user-page" replace />;
@@ -36,8 +43,8 @@ const LoginPage = () => {
 
   return (
     <Wrapper className="bg-greyish-white h-screen flex items-center justify-center">
-      <Card className="bg-white shadow-login-card rounded-3xl h-[534px] w-[438px]  pt-14">
-        <Image className="flex items-center justify-center" />
+      <Card className="bg-white shadow-login-card rounded-3xl h-auto w-[438px]  pt-14">
+        <Image className="flex justify-center" />
         <Forms onSubmit={formik.handleSubmit} className="px-6">
           <InputField
             ref={emailInputRef}
@@ -46,8 +53,14 @@ const LoginPage = () => {
             name="email"
             value={formik.values.email}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             placeholder="@gmail.com"
           />
+          {formik.errors.email &&
+            formik.touched.email &&
+            formik.errors.email && (
+              <div className="text-red-500">{formik.errors.email}</div>
+            )}
 
           <InputField
             label="Password"
@@ -57,10 +70,17 @@ const LoginPage = () => {
             onChange={formik.handleChange}
             placeholder="****************"
           />
+          {formik.errors.password && formik.touched.password && (
+            <div className="text-red-500">{formik.errors.password}</div>
+          )}
+
+          {formik.errors.email || formik.errors.password
+            ? null
+            : loginError && <div className="text-red-500">{loginError}</div>}
           <Button
             text="Sign In"
             type="submit"
-            className="bg-primary-blue text-white h-14 mt-10 rounded-lg  font-semibold text-lg"
+            className="bg-primary-blue text-white h-14 mt-10 rounded-lg  font-semibold text-lg mb-10"
           ></Button>
         </Forms>
       </Card>

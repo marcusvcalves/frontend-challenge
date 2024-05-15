@@ -7,12 +7,22 @@ type InputFieldProps = {
   value?: string;
   placeholder?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
   readOnly?: boolean;
 };
 
 const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
   (
-    { label, type, name, value, placeholder, onChange, readOnly = false },
+    {
+      label,
+      type,
+      name,
+      value,
+      placeholder,
+      onChange,
+      onBlur,
+      readOnly = false,
+    },
     ref
   ) => {
     const inputId = `${name}-input`;
@@ -29,6 +39,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
           type={type}
           name={name}
           onChange={onChange}
+          onBlur={onBlur}
           value={value}
           placeholder={placeholder}
           autoComplete="on"

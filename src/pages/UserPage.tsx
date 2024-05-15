@@ -3,7 +3,7 @@ import Button from '../components/Button';
 import Card from '../components/Card';
 import InputField from '../components/InputField';
 import Wrapper from '../components/Wrapper';
-import Forms from '../components/Form/Forms';
+import Forms from '../components/Forms/Forms';
 import Avatar from '../components/Avatar';
 import { Navigate } from 'react-router-dom';
 
