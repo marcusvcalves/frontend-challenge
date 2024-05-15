@@ -18,6 +18,7 @@ const UserPage = () => {
     <Wrapper className="flex flex-col bg-userpage-background h-screen">
       <Wrapper className="bg-white h-20 flex items-center justify-end">
         <Button
+          type="submit"
           onClick={handleLogout}
           text="Logout"
           className="bg-primary-blue text-white h-14 w-72 rounded-lg font-semibold text-lg mr-10"
