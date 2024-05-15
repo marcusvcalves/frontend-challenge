@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import BlankAvatar from '../../assets/blank-avatar.png';
 
 interface AvatarProps {
@@ -7,13 +6,13 @@ interface AvatarProps {
 }
 
 const Avatar = ({ img, className }: AvatarProps) => {
-  const [avatarImg] = useState(img ? img : BlankAvatar);
+  const avatarImg = img ? img : BlankAvatar;
 
   return (
     <div className={className}>
       <p className="font-semibold text-picture-text">Profile picture</p>
       <img
-        className="mt-2"
+        className="mt-2 rounded-2xl"
         src={avatarImg}
         width={80}
         height={80}

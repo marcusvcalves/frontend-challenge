@@ -3,6 +3,7 @@ import { FormikValues } from 'formik';
 import axiosClient from '../api/axios';
 import { User } from '../interfaces/User';
 import { AuthTokens } from '../interfaces/AuthTokens';
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -19,6 +20,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     return storedAuthTokens ? JSON.parse(storedAuthTokens) : null;
   });
   const [user, setUser] = useState<User | null>(null);
+  const navigate = useNavigate();
 
   const handleLogin = (values: FormikValues) => {
     axiosClient.post('/auth/login/', values).then((res) => {
@@ -28,6 +30,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       };
       setAuthTokens(authTokens);
       localStorage.setItem('authTokens', JSON.stringify(authTokens));
+      navigate('/user-page');
     });
   };
 
@@ -35,6 +38,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setAuthTokens(null);
     setUser(null);
     localStorage.removeItem('authTokens');
+    navigate('/');
   };
 
   useEffect(() => {
