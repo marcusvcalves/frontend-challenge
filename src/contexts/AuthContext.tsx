@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useCallback, useEffect, useState } from 'react';
 import { FormikValues } from 'formik';
 import axiosClient from '../api/axios';
 import { User } from '../interfaces/User';
@@ -27,7 +27,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         };
         setAuthTokens(authTokens);
         localStorage.setItem('authTokens', JSON.stringify(authTokens));
-        navigate('/user-page');
         setLoginError(null);
       })
       .catch((error) => {
@@ -43,6 +42,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.removeItem('authTokens');
     navigate('/');
   };
+
+  const navigateToUserPage = useCallback(() => {
+    navigate('/user-page');
+  }, [navigate]);
 
   useEffect(() => {
     const getUser = () => {
@@ -60,12 +63,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             avatar: res.data.avatar,
           };
           setUser(userData);
+          navigateToUserPage();
         });
       }
     };
 
     getUser();
-  }, [authTokens]);
+  }, [authTokens, navigateToUserPage]);
 
   const contextValue = {
     authTokens,
