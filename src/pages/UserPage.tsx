@@ -32,19 +32,21 @@ const UserPage = () => {
           />
           <Forms className="px-9">
             <InputField
-              label="Your Name"
+              label="Name"
               type="name"
               name="name"
               value={user?.name || ''}
               readOnly={true}
+              prefix={true}
             />
 
             <InputField
-              label="Your E-mail"
+              label="E-mail"
               type="email"
               name="email"
               value={user?.email || ''}
               readOnly={true}
+              prefix={true}
             />
           </Forms>
         </Card>

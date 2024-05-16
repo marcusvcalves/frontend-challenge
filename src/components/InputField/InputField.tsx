@@ -9,6 +9,7 @@ type InputFieldProps = {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
   readOnly?: boolean;
+  prefix?: boolean;
 };
 
 const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
@@ -22,6 +23,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
       onChange,
       onBlur,
       readOnly = false,
+      prefix = false,
     },
     ref
   ) => {
@@ -30,6 +32,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
     return (
       <div className="flex flex-col pt-6">
         <label htmlFor={inputId}>
+          {prefix ? <span>Your </span> : null}
           <span className="font-bold">{label}</span>
         </label>
         <input
