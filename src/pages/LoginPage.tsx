@@ -6,7 +6,6 @@ import Forms from '../components/Forms';
 import InputField from '../components/InputField';
 import Wrapper from '../components/Wrapper';
 import { useCallback, useEffect, useRef } from 'react';
-import { Navigate } from 'react-router-dom';
 import validationSchema from '../utils/validation';
 import Logo from '../components/Logo';
 
@@ -24,7 +23,7 @@ const LoginPage = () => {
     },
   });
 
-  const { user, handleLogin, setLoginError, loginError } = useAuthContext();
+  const { handleLogin, setLoginError, loginError } = useAuthContext();
 
   const clearLoginError = useCallback(() => {
     setLoginError(null);
@@ -36,10 +35,6 @@ const LoginPage = () => {
     }
     clearLoginError();
   }, [clearLoginError]);
-
-  if (user) {
-    return <Navigate to="/user-page" replace />;
-  }
 
   return (
     <Wrapper className="bg-greyish-white h-screen flex items-center justify-center">
