@@ -1,30 +1,40 @@
-# React + TypeScript + Vite
+# frontend-challenge
+Repositório da minha solução para o teste da B2bit.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## Scripts
+- Executar em Ambiente de Desenvolvimento
 ```
+npm run dev
+```
+Este comando inicia o servidor de desenvolvimento usando Vite, permitindo que você visualize e trabalhe no seu aplicativo durante o desenvolvimento. O servidor é iniciado em http://localhost:5173 por padrão.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Compilar o Projeto
+```
+npm run build
+```
+Este comando compila o projeto usando TypeScript (tsc) e Vite, preparando-o para implantação em produção. Os arquivos compilados serão gerados na pasta dist.
+
+- Visualizar a compilação de produção
+```
+npm run preview
+```
+Este comando inicia um servidor local para visualizar a compilação de produção do projeto. É útil para testar o aplicativo antes de implantá-lo em produção.
+
+- Executar testes
+```
+npm run tests
+```
+Este comando executa os testes usando Cypress. Certifique-se de que o servidor de desenvolvimento esteja em execução (npm run dev) antes de executar os testes.
+
+- Linting do Código
+```
+npm run lint
+```
+Este comando executa o ESLint no código TypeScript, procurando por problemas de formatação e erros de código.
+
+- Formatação do Código
+```
+npm run pretty
+```
+Este comando utiliza o Prettier para formatar automaticamente todos os arquivos de código no projeto.
+
