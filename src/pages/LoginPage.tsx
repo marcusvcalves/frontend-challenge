@@ -4,11 +4,11 @@ import Button from '../components/Button';
 import Card from '../components/Card';
 import Forms from '../components/Forms';
 import InputField from '../components/InputField';
-import Image from '../components/Logo';
 import Wrapper from '../components/Wrapper';
 import { useCallback, useEffect, useRef } from 'react';
 import { Navigate } from 'react-router-dom';
 import validationSchema from '../utils/validation';
+import Logo from '../components/Logo';
 
 const LoginPage = () => {
   const emailInputRef = useRef<HTMLInputElement>(null);
@@ -43,8 +43,8 @@ const LoginPage = () => {
 
   return (
     <Wrapper className="bg-greyish-white h-screen flex items-center justify-center">
-      <Card className="bg-white shadow-login-card rounded-3xl h-auto w-[438px]  pt-14">
-        <Image className="flex justify-center" />
+      <Card className="bg-white shadow-login-card rounded-3xl h-auto w-[438px] pt-14">
+        <Logo className="flex justify-center w-[250px] sm:w-[100%] mx-auto" />
         <Forms onSubmit={formik.handleSubmit} className="px-6">
           <InputField
             ref={emailInputRef}

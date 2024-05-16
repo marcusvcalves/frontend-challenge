@@ -21,16 +21,16 @@ const UserPage = () => {
           type="submit"
           onClick={handleLogout}
           text="Logout"
-          className="bg-primary-blue text-white h-14 w-72 rounded-lg font-semibold text-lg mr-10"
+          className="bg-primary-blue text-white h-14 w-72 rounded-lg font-semibold text-lg mr-[2.5%]"
         />
       </Wrapper>
       <Wrapper className="flex flex-col grow justify-center items-center">
-        <Card className="bg-white shadow-md rounded-3xl h-[27.5rem] w-[30rem]  pt-14">
+        <Card className="bg-white shadow-md rounded-3xl p-4 sm:p-8 lg:p-12 w-full max-w-[30rem]">
           <Avatar
             img={user?.avatar}
             className="flex flex-col justify-center items-center"
           />
-          <Forms className="px-9">
+          <Forms className="px-3 sm:px-1">
             <InputField
               label="Name"
               type="name"
@@ -39,7 +39,6 @@ const UserPage = () => {
               readOnly={true}
               prefix={true}
             />
-
             <InputField
               label="E-mail"
               type="email"
