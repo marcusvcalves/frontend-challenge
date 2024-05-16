@@ -1,16 +1,5 @@
 import { forwardRef } from 'react';
-
-type InputFieldProps = {
-  label: string;
-  type: string;
-  name: string;
-  value?: string;
-  placeholder?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
-  readOnly?: boolean;
-  prefix?: boolean;
-};
+import { InputFieldProps } from '../../interfaces/InputFieldProps';
 
 const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
   (

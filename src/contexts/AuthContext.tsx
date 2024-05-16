@@ -1,20 +1,12 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { FormikValues } from 'formik';
 import axiosClient from '../api/axios';
 import { User } from '../interfaces/User';
 import { AuthTokens } from '../interfaces/AuthTokens';
 import { useNavigate } from 'react-router-dom';
+import { IAuthContext } from '../interfaces/IAuthContext';
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
-type AuthContextType = {
-  authTokens: AuthTokens | null;
-  user: User | null;
-  handleLogin: (values: FormikValues) => void;
-  loginError: string | null;
-  setLoginError: React.Dispatch<React.SetStateAction<string | null>>;
-  handleLogout: () => void;
-};
+export const AuthContext = createContext<IAuthContext | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [authTokens, setAuthTokens] = useState<AuthTokens | null>(() => {
@@ -87,16 +79,4 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
-};
-
-export const useAuthContext = () => {
-  const context = useContext(AuthContext);
-
-  if (!context) {
-    throw new Error(
-      'o hook useAuthContext deve ser usado dentro do AuthProvider'
-    );
-  }
-
-  return context;
 };

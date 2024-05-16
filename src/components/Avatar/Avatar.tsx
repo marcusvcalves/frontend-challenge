@@ -1,9 +1,5 @@
+import { AvatarProps } from '../../interfaces/AvatarProps';
 import BlankAvatar from '../../assets/blank-avatar.png';
-
-interface AvatarProps {
-  className?: string;
-  img?: string;
-}
 
 const Avatar = ({ img, className }: AvatarProps) => {
   const avatarImg = img ? img : BlankAvatar;
