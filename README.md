@@ -1,4 +1,4 @@
-# frontend-challenge
+# teste-b2bit
 Repositório da minha solução para o teste da B2bit.
 
 ## Scripts
