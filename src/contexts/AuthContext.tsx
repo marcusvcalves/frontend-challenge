@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             const userData = {
               name: res.data.name,
               email: res.data.email,
-              avatar: res.data.avatar,
+              avatar: res.data.avatar.high,
             };
             setUser(userData);
           })
