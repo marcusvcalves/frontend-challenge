@@ -1,5 +1,5 @@
 # teste-b2bit
-Repositório da minha solução para o teste da B2bit.
+Repositório da minha solução para o teste da B2bit. Email e senha para login: cliente@youdrive.com/password.
 
 ## Scripts
 - Executar em Ambiente de Desenvolvimento
